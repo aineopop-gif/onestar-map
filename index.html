@@ -6,11 +6,11 @@
 <style>
 /* 한 손 세로 앱: 위 고정 머리(검색·분류·지역) + 카드 목록 + 아래 탭 줄 */
 :root{
-  --bg:#121014;--panel:#1c191f;--line:#2e2a33;--fg:#efe9e4;--mute:#9d95a3;--acc:#e0453a;--acc2:#ffd23f;--link:#9fd0ff;--ok:#a6e8c2;--warn:#ffcf80;--mkbg:#e6c35c;--mkfg:#1d1708;--mkbd:#e6c35c;
+  --bg:#121014;--panel:#1c191f;--line:#2e2a33;--fg:#efe9e4;--mute:#9d95a3;--acc:#e0453a;--acc2:#ffd23f;--link:#9fd0ff;--ok:#a6e8c2;--warn:#ffcf80;--mkbg:#e6c35c;--mint:#8fd6c1;--mint-fg:#a9e3d2;--mint-bd:#3c6b5f;--mkfg:#1d1708;--mkbd:#e6c35c;
   --disp:"Black Han Sans","IBM Plex Sans KR","Malgun Gothic",sans-serif;--body:"IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
   color-scheme:dark}
-@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f0cf5e;--mkfg:#1d1708;--mkbd:#d9b545;color-scheme:light}}
-:root[data-theme="light"]{--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f0cf5e;--mkfg:#1d1708;--mkbd:#d9b545;color-scheme:light}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f0cf5e;--mint:#8fd6c1;--mint-fg:#1f6b57;--mint-bd:#9fd3c4;--mkfg:#1d1708;--mkbd:#d9b545;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f0cf5e;--mint:#8fd6c1;--mint-fg:#1f6b57;--mint-bd:#9fd3c4;--mkfg:#1d1708;--mkbd:#d9b545;color-scheme:light}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;word-break:keep-all;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
@@ -29,7 +29,9 @@ h1{margin:0;font-family:var(--disp);font-weight:400;font-size:24px;letter-spacin
 .chip i{font-style:normal;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--c,var(--acc))}
 .chip b{color:var(--mute);font-weight:600;margin-left:4px}
 .chip.on{background:var(--c,var(--acc));border-color:var(--c,var(--acc));color:#fff;font-weight:700}.chip.on i{background:#fff}.chip.on b{color:#fff}
-.chip.reg.on{background:var(--acc2);border-color:var(--acc2);color:#111}.chip.reg.on b{color:#111}
+/* 11-07 사용자: 지역 버튼은 눈에 아프지 않은 민트 */
+.chip.reg{border-color:var(--mint-bd);color:var(--mint-fg)}.chip.reg b{color:var(--mint-fg);opacity:.75}
+.chip.reg.on{background:var(--mint);border-color:var(--mint);color:#10241e;font-weight:700}.chip.reg.on b{color:#10241e;opacity:1}
 main{display:flex;flex-direction:column;gap:10px;padding-block:12px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
 .card.xd{opacity:.45}
@@ -166,5 +168,6 @@ var ev;addEventListener("beforeinstallprompt",function(e){e.preventDefault();ev=
 bb.onclick=function(){if(ev){ev.prompt();ev.userChoice.then(function(){b.hidden=true})}};
 if(and)setTimeout(function(){if(!ev&&b.hidden){t.textContent="메뉴 ⋮ 에서 «앱 설치» 또는 «홈 화면에 추가»를 누르세요";b.hidden=false}},2500);
 })();
-if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js")});
+if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update()})});
+if("serviceWorker" in navigator&&navigator.serviceWorker.controller){var _rl=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(!_rl){_rl=true;location.reload()}})}
 </script></body></html>
