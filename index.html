@@ -6,11 +6,11 @@
 <style>
 /* 한 손 세로 앱: 위 고정 머리(검색·분류·지역) + 카드 목록 + 아래 탭 줄 */
 :root{
-  --bg:#121014;--panel:#1c191f;--line:#2e2a33;--fg:#efe9e4;--mute:#9d95a3;--acc:#e0453a;--acc2:#ffd23f;--link:#9fd0ff;--ok:#a6e8c2;--warn:#ffcf80;--mkbg:rgba(232,196,104,.24);--mkfg:#f3dc9a;--mkbd:rgba(232,196,104,.5);
+  --bg:#121014;--panel:#1c191f;--line:#2e2a33;--fg:#efe9e4;--mute:#9d95a3;--acc:#e0453a;--acc2:#ffd23f;--link:#9fd0ff;--ok:#a6e8c2;--warn:#ffcf80;--mkbg:#e6c35c;--mkfg:#1d1708;--mkbd:#e6c35c;
   --disp:"Black Han Sans","IBM Plex Sans KR","Malgun Gothic",sans-serif;--body:"IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
   color-scheme:dark}
-@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f7eac2;--mkfg:#5c4706;--mkbd:#e2cb85;color-scheme:light}}
-:root[data-theme="light"]{--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f7eac2;--mkfg:#5c4706;--mkbd:#e2cb85;color-scheme:light}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f0cf5e;--mkfg:#1d1708;--mkbd:#d9b545;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f6f2ef;--panel:#fff;--line:#e4dcd6;--fg:#1d1a1f;--mute:#6f6873;--acc:#c8352b;--acc2:#b07d00;--link:#1f63b8;--ok:#247a4c;--warn:#8a5a00;--mkbg:#f0cf5e;--mkfg:#1d1708;--mkbd:#d9b545;color-scheme:light}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;word-break:keep-all;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
