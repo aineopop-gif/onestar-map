@@ -1,4 +1,4 @@
-const V="onestar-v202611071611",F=["./","index.html","manifest.json","icon-192.png","icon-512.png"];
+const V="onestar-v202611071615",F=["./","index.html","manifest.json","icon-192.png","icon-512.png"];
 self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(V).then(c=>c.addAll(F)))});
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 // 새 자료 먼저, 안 되면(오프라인) 저장해 둔 것
