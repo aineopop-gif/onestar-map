@@ -137,4 +137,20 @@ $("#list").onclick=e=>{const c=e.target.closest(".card");if(!c)return;const it=D
 addEventListener("scroll",()=>{$("#top").hidden=scrollY<800},{passive:true});$("#top").onclick=()=>scrollTo({top:0,behavior:"smooth"});
 run();
 </script>
-<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));</script></body></html>
+<div id="ib" hidden style="position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom,0px));z-index:9;padding:10px max(16px,env(safe-area-inset-left,0px));background:#ffd23f;color:#111;font-size:14px;font-weight:700;display:flex;gap:8px;align-items:center">
+<span id="ibt" style="flex:1"></span><button id="ibb" style="border:0;border-radius:8px;background:#111;color:#fff;padding:8px 12px;font:inherit" hidden>설치</button><button id="ibx" style="border:0;background:none;font-size:20px;color:#111" aria-label="닫기">×</button></div>
+<script>
+(function(){var u=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(u),and=/Android/.test(u),kakao=/KAKAOTALK/i.test(u),inapp=kakao||/NAVER|Instagram|FBAN|FBAV|Line\//.test(u);
+var sa=matchMedia("(display-mode: standalone)").matches||navigator.standalone;var b=document.getElementById("ib"),t=document.getElementById("ibt"),bb=document.getElementById("ibb");
+document.getElementById("ibx").onclick=function(){b.hidden=true};
+if(sa)return;
+if(kakao){location.href="kakaotalk://web/openExternal?url="+encodeURIComponent(location.href);}
+if(inapp&&and){setTimeout(function(){location.href="intent://"+location.host+location.pathname+"#Intent;scheme=https;package=com.android.chrome;end"},kakao?800:0);}
+if(inapp){t.textContent=ios?"설치하려면 오른쪽 아래 ⋯ 를 눌러 «Safari로 열기»를 고르세요":"설치하려면 오른쪽 위 ⋮ 를 눌러 «다른 브라우저로 열기»를 고르세요";b.hidden=false;return}
+if(ios){t.textContent="공유 버튼(□↑)을 눌러 «홈 화면에 추가»를 고르면 앱으로 설치됩니다";b.hidden=false;return}
+var ev;addEventListener("beforeinstallprompt",function(e){e.preventDefault();ev=e;t.textContent="휴대폰에 앱으로 설치하면 바로 열 수 있어요";bb.hidden=false;b.hidden=false});
+bb.onclick=function(){if(ev){ev.prompt();ev.userChoice.then(function(){b.hidden=true})}};
+if(and)setTimeout(function(){if(!ev&&b.hidden){t.textContent="메뉴 ⋮ 에서 «앱 설치» 또는 «홈 화면에 추가»를 누르세요";b.hidden=false}},2500);
+})();
+if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js")});
+</script></body></html>
